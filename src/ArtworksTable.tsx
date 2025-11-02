@@ -20,7 +20,7 @@ interface Artwork {
 }
 
 const ArtworksTable : React.FC=()=>{
-    const [rowClick,setRowClick]=useState(false)
+    const [rowClick,_setRowClick]=useState(false)
     const [artworks,setArtworks] =useState<Artwork[]>([])
 
     const [totalRecords,setTotalRecords]= useState(0)
@@ -48,7 +48,7 @@ const handleCustomSelect = () => {
 useEffect(() => {
   if (!selectedRange) return;
   const startIndex = (page - 1) * 12 + 1
-  const endIndex = startIndex + artworks.length - 1
+//   const endIndex = startIndex + artworks.length - 1
   
   const updated = new Set(selectedIds)
   artworks.forEach((art, index) => {
@@ -133,8 +133,9 @@ useEffect(() => {
 
   )}
 
+    {/* @ts-ignore */}
      <DataTable 
-      value={artworks} tableStyle={{ minWidth: "60rem" }}
+     value={artworks} tableStyle={{ minWidth: "60rem" }}
       paginator rows={12} rowsPerPageOptions={[5,10,25,50]}
       totalRecords={totalRecords} loading={loading}
        onPage={onPageChange} lazy
